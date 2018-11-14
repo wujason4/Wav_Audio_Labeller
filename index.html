@@ -2,14 +2,15 @@
 <html lang="en" >
    <head>
       <meta charset="UTF-8">
-      <title>Audio Labeller</title>
+      <title>WAV Audio Labeller</title>
       <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
    </head>
    <body>
-      <!--Body Text-->
-      <h1>Audio Labeller</h1>
+    <!--Body Text-->
+    <h1 style="margin-left:1%;">Wav Audio Labeller</h1>
 
-      <div style="float:left; margin-right:5%;">
+    <div>
+      <div style="float:left; margin-left: 1%; margin-right:1%; width: 28%;">
         <p><strong> Follow the instructions to label speakers in the audio clip.</strong></p>
         <ol>
            <li>Click 'Play' to begin playing the audio clip</li>
@@ -19,7 +20,7 @@
         </ol>
       </div>
       
-      <div style="float:center;">
+      <div style="float:left; width: 30%; margin-right:1%;">
         <p><strong><i>Keyboard Shortcuts:</i></strong>
         <ul>
           <li>Play/Pause ==> Space</li>
@@ -30,23 +31,38 @@
         </ul>
       </div>
 
+      <div style="float:left; width: 39%;">
+        <p><strong><i>Pre-Requisites (Google Chrome):</i></strong></p>
+        <ol>
+          <li>Download chrome extension "Allow-Control-Allow-Origin" ==> <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi">Extension_Link</a></li>
+          <li>Download web-server application and set directory to audio file location ==> <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en">Application_Link</a></li>
+          <li>Save .wav files in the directory used above</li>
+        </ol>
+      </div>
+    </div>
+      
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
-    <div style="float:center;">
+    <div style="margin-left: 1%;">
         <p><strong><i>Status:</i></strong>
         <ul>
           <li id="status">None</li>
         </ul>
-      </div>
+    </div>
 
       
       <br>
       <br>
-      <!-- <br> -->
-      <!-- <br> -->
-      <!-- <br> -->
-      <!-- <br> -->
-      <!-- <br> -->
+
 
       <b id="AudioName" tyle="text-align: center"></b>
       <!-- main wavesurfer.js lib -->
