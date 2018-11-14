@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" >
+   <head>
+      <meta charset="UTF-8">
+      <title>Audio Labeller</title>
+      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+   </head>
+   <body>
+      <!--Body Text-->
+      <h1>Audio Labeller</h1>
+
+      <div style="float:left; margin-right:5%;">
+        <p><strong> Follow the instructions to label speakers in the audio clip.</strong></p>
+        <ol>
+           <li>Click 'Play' to begin playing the audio clip</li>
+           <li>Click Speaker #1 when the first speaker begins talking</li>
+           <li>Click 'Speaker Finished' when the speaker finishes talking</li>
+           <li>Click Speaker #2 when the next speaker starts talking (Repeat)</li>
+        </ol>
+      </div>
+      
+      <div style="float:center;">
+        <p><strong><i>Keyboard Shortcuts:</i></strong>
+        <ul>
+          <li>Play/Pause ==> Space</li>
+          <li>Start/Stop Speaker [#] ==> "#" / Shift + "#" - (ie. "1" for speaker 1)</li>
+          <li>Skip Forward/Backward 1s ==> Right/Left Arrow keys - (shift --, ctrl ++)</li>
+          <li>Toggle Playback Speed ==> "P"</li>
+          <li>Save Label File ==> Ctrl + Shift + "S"</li>
+        </ul>
+      </div>
+
+
+
+    <div style="float:center;">
+        <p><strong><i>Status:</i></strong>
+        <ul>
+          <li id="status">None</li>
+        </ul>
+      </div>
+
+      
+      <br>
+      <br>
+      <!-- <br> -->
+      <!-- <br> -->
+      <!-- <br> -->
+      <!-- <br> -->
+      <!-- <br> -->
+
+      <b id="AudioName" tyle="text-align: center"></b>
+      <!-- main wavesurfer.js lib -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/plugin/wavesurfer.regions.min.js"></script>
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+      <!-- wavesurfer.js timeline -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/plugin/wavesurfer.timeline.min.js"></script>
+
+      <div id="waveform"></div>
+      <div id="waveform-timeline"></div>
+
+      <div style="text-align: left"  >
+
+         <button class="btn btn-info btn-md" style="margin:5px;width:100px;height:35px; "      onclick="speakerStarts(1)">
+             Speaker #1
+         </button>
+
+         <button class="btn btn-warning btn-md" style="margin:5px;width:100px;height:35px"  onclick="speakerStarts(2)">
+             Speaker #2
+         </button>
+
+          <button class="btn btn-danger btn-md" style="margin:5px;width:100px;height:35px"  onclick="speakerStarts(3)">
+             Speaker #3
+         </button>
+
+         <button class="btn btn-success btn-lg" style="margin:5px;width:120px;height:50px" onclick="wavesurfer.playPause()">
+             Play
+         </button>
+
+
+         <button id='stop' class="btn btn-danger btn-lg" style="margin:5px;width:200px;height:50px" onclick="speakerFinishes()">
+         <i class="glyphicon glyphicon-stop"></i>
+            Speaker Finished
+         </button>
+
+          <p><button id="next-btn" class="btn btn-default btn-lg" style="margin:5px;width:20s0px;height:50px"onclick="indexCounter()">
+            Load next Audio File
+         </button></p>
+
+         <p><button id="save-btn" class="btn btn-default btn-lg" style="margin:5px;width:20s0px;height:50px" onclick="download()">
+            Download Parsed Text File
+         </button></p>
+
+         <script>
+            document.getElementById('stop').style.visibility = 'hidden';
+            labelList = [];
+         </script>
+
+
+      </div>
+
+      <script  src="js/index.js"></script>
+   </body>
+</html>
