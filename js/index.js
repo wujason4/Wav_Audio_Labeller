@@ -1,32 +1,49 @@
 AudioFiles = [];
 AudioIndex = 0;
 SpeakerId = 0;
+labelList = [];
 
 $(document).ready(function() {
 
     filenames = [],
-        foldernames = [];
+    foldernames = [];
 
     $.get("http://127.0.0.1:8887/", function(response) {
 
-
-        //document.write(response);
         
-        myWindow = document.open("", "MsgWindow", "width=200,height=100");
+        myWindow = document.open("", "MsgWindow", "width=500,height=300");
         myWindow.document.write(response);
         getNames();
         myWindow.document.close();
 
+        var playlist = document.getElementById('playlist');
 
-        //WaveSurfer
+        for (var i = 0; i < AudioFiles.length; i++) {
+            var x = document.createElement('p');
+            x.classList.add("audio");
+            x.innerHTML = AudioFiles[i];
+            x.dataset.index = i;
+
+            playlist.appendChild(x);
+        }
+
+        document.querySelectorAll('.audio').forEach(el => {
+            console.log(el);
+            el.addEventListener("click", function() {
+                loadFile(el.dataset.index);
+            }
+        )});
+
+
+        WaveSurfer
         wavesurfer = WaveSurfer.create({
             container: '#waveform',
             waveColor: 'red',
             progressColor: 'purple',
-            barWidth: '1'
+            height: '130',
+            barWidth: '1',
+            backend: 'MediaElement'
         });
-
-        
 
 
         //To get waveform working, you need to download following extention
@@ -78,6 +95,13 @@ function indexCounter() {
         AudioIndex = 0;
     wavesurfer.load('http://127.0.0.1:8887/' + AudioFiles[AudioIndex]);
     document.getElementById("AudioName").innerHTML = AudioFiles[AudioIndex];
+}
+
+function loadFile(index){
+    wavesurfer.clearRegions();
+    wavesurfer.load('http://127.0.0.1:8887/' + AudioFiles[index]);
+    document.getElementById("AudioName").innerHTML = AudioFiles[index];
+
 }
 
 //Speaker Starts
@@ -150,6 +174,11 @@ function speakerFinishes() {
 
 }
 
+function clearLabels() {
+    wavesurfer.clearRegions();
+    labelList = [];
+}
+
 function download() {
     //Download putting functionality. Outputs txt file with Name/Timestaps
     var output = "";
@@ -171,25 +200,22 @@ function download() {
     
 }
 
-function setSpeed() {
-
-check = wavesurfer.getPlaybackRate();
-
-switch(check){
-    case 1:
-        wavesurfer.setPlaybackRate(2);
-        break;
-    case 2:
-        wavesurfer.setPlaybackRate(3);
-        break;
-    case 3:
-        wavesurfer.setPlaybackRate(1);
-        break;
-    }   
+function setSpeed_1_5x() {
+    wavesurfer.backend.setPlaybackRate(1.5);
+    document.getElementById("status").innerHTML = "Set playback speed to 1.5x!";
 }
 
-// $(document).addEventListener("keydown", function(e){
-// $(document).keydown(function(e){
+function setSpeed_2x() {
+    wavesurfer.backend.setPlaybackRate(2);
+    document.getElementById("status").innerHTML = "Set playback speed to 2x!";
+}
+
+function setSpeed_3x() {
+    wavesurfer.backend.setPlaybackRate(3);
+    document.getElementById("status").innerHTML = "Set playback speed to 3x!";
+}
+
+// Control keyboard shortcuts
 window.addEventListener("keydown", function(e){
 
 // Space
