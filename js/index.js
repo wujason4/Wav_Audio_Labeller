@@ -88,6 +88,7 @@ $(document).ready(function() {
 
 
 function indexCounter() {
+    global AudioIndex
     wavesurfer.clearRegions();
     if (AudioFiles.length > AudioIndex)
         AudioIndex++;
@@ -98,6 +99,7 @@ function indexCounter() {
 }
 
 function loadFile(index){
+    global AudioIndex
     wavesurfer.clearRegions();
     wavesurfer.load('http://127.0.0.1:8887/' + AudioFiles[index]);
     document.getElementById("AudioName").innerHTML = AudioFiles[index];
