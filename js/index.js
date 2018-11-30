@@ -101,7 +101,7 @@ function loadFile(index){
     wavesurfer.clearRegions();
     wavesurfer.load('http://127.0.0.1:8887/' + AudioFiles[index]);
     document.getElementById("AudioName").innerHTML = AudioFiles[index];
-
+    AudioIndex = index;
 }
 
 //Speaker Starts
@@ -184,8 +184,8 @@ function download() {
     var output = "";
 
     for (var i = 0; i < labelList.length; i++) {
-        output += "File Name: " + labelList[i].File + "\n" + "Speaker: " + labelList[i].Speaker + "\n" + "Start Time: " + labelList[i].StartTime + "\n" + "End Time: " + labelList[i].EndTime + "\n\n";
-       // output += labelList[i].StartTime + ", " labelList[i].Endtime + ", " + labelList[i].Speaker + "\n";
+        // output += "File Name: " + labelList[i].File + "\n" + "Speaker: " + labelList[i].Speaker + "\n" + "Start Time: " + labelList[i].StartTime + "\n" + "End Time: " + labelList[i].EndTime + "\n\n";
+        output += labelList[i].StartTime + ", " + labelList[i].Endtime + ", " + labelList[i].Speaker + "\n";
 
     }
 
